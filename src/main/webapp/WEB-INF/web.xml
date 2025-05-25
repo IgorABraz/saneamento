@@ -50,5 +50,23 @@
         <url-pattern>/alterarTelefone</url-pattern>
         <url-pattern>/alterarSenha</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+		<servlet-name>CadastrarUsuario</servlet-name>
+        <servlet-class>sanea.controller.cadastrarRelatorio</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CadastrarUsuario</servlet-name>
+        <url-pattern>/CadastrarRelato</url-pattern>
+    </servlet-mapping>
+    
+    <filter>
+    	<filter-name>JwtFilter</filter-name>
+    	<filter-class>sanea.controller.JwtFilter</filter-class>
+	</filter>
+	<filter-mapping>
+   		 <filter-name>JwtFilter</filter-name>
+   		 <url-pattern>/CadastrarRelato</url-pattern> <!-- Protege apenas relatórios -->
+	</filter-mapping>
 
 </web-app>

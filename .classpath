@@ -14,5 +14,7 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="C:/Users/igora/Downloads/mysql-connector-j-9.2.0/mysql-connector-j-9.2.0/mysql-connector-j-9.2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/igora/Downloads/commons-text-1.13.1/commons-text-1.13.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/igora/Downloads/jjwt-0.9.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

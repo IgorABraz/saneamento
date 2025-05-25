@@ -2,6 +2,7 @@ package sanea.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -39,20 +40,29 @@ public class loginUsuario extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
+		System.out.println("[LOG] Usuario Logando... ");
+		
 		Usuario usuario = new Usuario();
 		
 		usuario.setEmail(request.getParameter("email"));
 		usuario.setSenha(request.getParameter("senha"));
 		
-		String UserID = usuario.logar();
+		int UserID = Integer.parseInt(usuario.logar());
 		
 		
 		
-		HttpSession session = request.getSession();
-		session.setAttribute("userId", UserID); // Armazena o ID do usuário
-		session.setMaxInactiveInterval(1800);  // Define tempo de expiração: 30 minutos
-		
-		System.out.println("ID do USUARIO LOGADO: " + UserID);
+		if (UserID > 0) { // Se o usuário for válido
+            String token = JwtUtil.generateToken(UserID); // Gera JWT
+            
+            Cookie jwtCookie = new Cookie("authToken", token);
+            jwtCookie.setHttpOnly(true); // Impede acesso via JS
+            jwtCookie.setSecure(true); // Apenas via HTTPS
+            jwtCookie.setMaxAge(3600); // Expira em 1 hora
+            response.addCookie(jwtCookie);
+            
+            response.setContentType("application/json");
+            System.out.println("[LOG] ID do USUARIO LOGADO: " + UserID);
+        }
 		
 	}
 

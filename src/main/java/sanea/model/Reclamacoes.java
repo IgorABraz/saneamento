@@ -1,5 +1,10 @@
 package sanea.model;
 
+import java.math.BigDecimal;
+
+import sanea.dao.CadastroDao;
+import sanea.dao.CadastroRelatorioDAO;
+
 public class Reclamacoes {
  
 	private int IdUsuario;
@@ -7,8 +12,8 @@ public class Reclamacoes {
 	private int IdRegiao;
 	private String endereco;
 	private String descricao;
-	private String latitude;
-	private String longitude;
+	private BigDecimal latitude;
+	private BigDecimal longitude;
 	private String status;
 	private String anexo;
 	
@@ -48,16 +53,16 @@ public class Reclamacoes {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public String getLatitude() {
+	public BigDecimal getLatitude() {
 		return latitude;
 	}
-	public void setLatitude(String latitude) {
+	public void setLatitude(BigDecimal latitude) {
 		this.latitude = latitude;
 	}
-	public String getLongitude() {
+	public BigDecimal getLongitude() {
 		return longitude;
 	}
-	public void setLongitude(String longitude) {
+	public void setLongitude(BigDecimal longitude) {
 		this.longitude = longitude;
 	}
 	public String getStatus() {
@@ -67,6 +72,9 @@ public class Reclamacoes {
 		this.status = status;
 	}
 	
+	public void cadastrar() {
+		new CadastroRelatorioDAO().cadastrarRelatorio(this);
+	}
 	
 	
 }
